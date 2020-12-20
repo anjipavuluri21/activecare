@@ -1,21 +1,27 @@
 <?php 
-
     include 'includes/products_header.php';
     include 'connection.php';
-if(isset($_SESSION['userdata'])){
-    $cart_query="SELECT * FROM activecare_products RIGHT JOIN activecare_cart on activecare_products.id=activecare_cart.prodid WHERE userid=".$_SESSION['userdata']['id'];
+
+if (isset($_SESSION['userdata'])){
+    $userid = $_SESSION['userdata']['id'];
+    $guestid=0;
+    
+}else{
+    $userid=0;
+    $guestid = session_id();
+}
+
+    $cart_query="SELECT * FROM activecare_products RIGHT JOIN activecare_cart on activecare_products.id=activecare_cart.prodid WHERE userid='".$userid."' and guest_id='".$guestid."'";
     $result=mysqli_query($conn,$cart_query);
 
-    $stats_query="SELECT count(*) as product_count, sum(price) as total_price FROM activecare_products RIGHT JOIN activecare_cart on activecare_products.id=activecare_cart.prodid WHERE userid=".$_SESSION['userdata']['id'];
+    $stats_query="SELECT count(*) as product_count, sum(price) as total_price FROM activecare_products RIGHT JOIN activecare_cart on activecare_products.id=activecare_cart.prodid WHERE userid='".$userid."' and guest_id='".$guestid."'";
      $stats=mysqli_query($conn,$stats_query);
 $stats_result= mysqli_fetch_assoc($stats);
 
 $cart_count=$stats_result['product_count'];
 $cart_total=$stats_result['total_price'];
 
-}else{
-    print_r($_SESSION['cart_products']);EXIT;
-}
+
 ?>
 
 <div class="banner-area" id="home-link">&nbsp;</div>
@@ -65,19 +71,27 @@ $cart_total=$stats_result['total_price'];
 
 <?php include 'includes/footer.php';?>
 <script>
-    
+     var delay = 2000; 
+     var userid="<?php echo isset($_SESSION['userdata']['id'])?$_SESSION['userdata']['id']:"";?>";
     $('#pay_with_cod_btn').click(function(){
-        alert();
-        
+//        alert();
+        if(userid==''){
+            alert('Please login before placing the order');
+            var url = 'index.php'
+            setTimeout(function(){ window.location = url; }, delay);
+            return false;
+
+        }
        $.ajax({
             type:'POST',
             url:"place_order.php",
+            async: true,
             data:{"payment_type":"COD"},
             success:function(response){
 //                console.log(response);
             alert('Order placed Sucessfully');
-            var delay = 2000; 
-        var url = 'orders.php'
+           
+        var url = 'orders.php';
         setTimeout(function(){ window.location = url; }, delay);
 //       window.location.replace('orders.php');
             },
