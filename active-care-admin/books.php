@@ -11,7 +11,7 @@ include "header.php";
 		  </div>             
 		</div>
 		<div class="clearfix"></div>			
-			<a align="right" href="ourbooks_addnew.php"><button class="btn btn-success"><i class="fa fa-plus"></i> Add New Books</button></a>			
+			<a align="right" href="books_addnew.php"><button class="btn btn-success"><i class="fa fa-plus"></i> Add New Books</button></a>			
 		<div class="clearfix"></div>
 		<div class="row">           
 		  <div class="clearfix"></div>

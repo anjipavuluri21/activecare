@@ -68,7 +68,7 @@ if (isset($_POST['submit'])) {
         $name1 = pathinfo($_FILES['thumbimg2']['name'], PATHINFO_FILENAME);
         $extension1 = pathinfo($_FILES['thumbimg2']['name'], PATHINFO_EXTENSION);
         $ext = strtolower(pathinfo($_FILES['thumbimg2']['name'], PATHINFO_EXTENSION));
-        $newfilename = 'active-care-home-' . round(microtime(true));
+        $newfilename = $thumbimg2."_" . round(microtime(true));
         if (($ext == "pdf")) {
             $basename1 = $newfilename . '.' . $extension1;
             $blocation1 = "../uploads/products/" . $basename1;
