@@ -37,35 +37,12 @@ if(isset($_POST['submit']))
 				$stmt1->execute();
 				$res11 = $stmt1->rowCount();	
 			}
+                        else {
+                            
+                        }
 		}
-	} 
-	if($_POST['thumbimg1'][0] != "")
-	{			
-		foreach ($_POST['thumbimg1'] as $key => $productimages) {
-			if($key != count($_POST['thumbimg1'])-1) {
-				$img_location .= $productimages.",";
-			}
-			else {
-				$img_location .= $productimages;
-			}
-		}
-	}	
-	if($img_location != "") {
-		$img = $img_location;
-	} else {
-		$img = "";
 	}
 		
-	if($img_location!="")
-	{		
-		$login_query = "UPDATE activecare_products SET thumimage1='$img' WHERE id=$lastinsertid";
-		$database1 = new Database();
-		$dbCon1 = $database1->getConnection();
-		$stmt1 = $dbCon1->prepare($login_query);  
-		$stmt1->execute();
-		$res11 = $stmt1->rowCount();		
-	} 
-	
 	if($thumbimg2!="")
 	{			
 		$name1 = pathinfo($_FILES['thumbimg2']['name'], PATHINFO_FILENAME);
@@ -87,35 +64,13 @@ if(isset($_POST['submit']))
 		}
 	} 
 	
-	for($p=0;$p<$countprods;$p++){				
-		//Check Rename
-		$name1 = pathinfo($_FILES['prodimage']['name'][$p], PATHINFO_FILENAME);
-		$extension1 = strtolower(pathinfo($_FILES['prodimage']['name'][$p], PATHINFO_EXTENSION));
-				
-		if($name1!=""){						
-			if (($extension1 == "jpg") || ($extension1 == "jpeg") || ($extension1 == "png")) {								
-				$newfilename1 = 'active-care'.$p.rand(). round(microtime(true));			
-				$basename1 = $newfilename1 . '.' . $extension1;
-				$blocation1 = "uploads/products/" . $basename1;
-				$target_file1 = "uploads/products/" . $basename1;	
-				
-				if (move_uploaded_file($_FILES['prodimage']['tmp_name'][$p], $target_file1)) { 						
-					$login_query = "INSERT INTO activecare_prodimages (`prodid`,`image`) VALUES ('$lastinsertid','$blocation1')";
-					$database1 = new Database();
-					$dbCon1 = $database1->getConnection();
-					$stmt1 = $dbCon1->prepare($login_query);  
-					$stmt1->execute();
-					$res12 = $stmt1->rowCount();					
-				}
-			}	
-		}		
-	}
+	
 			
 		
-	if($res == 1 || $res1 == 1|| $res11 == 1|| $res12 == 1){
+	if($res == 1 || $res1 == 1|| $res11 == 1){
 		header("location:books.php?msg=success");		
 	} else {		
-		header("location:ourbooks_addnew.php?msg=fail");		
+		header("location:books_addnew.php?msg=fail");		
 	}	
 }	
 ?>
@@ -188,7 +143,7 @@ if(isset($_POST['submit']))
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> Upload Pdf<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="file" name="thumbimg2" id="thumbimg2" accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required class="form-control" style="padding: 0px; border-width: 0px;">
+                          <input type="file" name="thumbimg2" id="thumbimg2" accept=".pdf,.doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required class="form-control" style="padding: 0px; border-width: 0px;">
 						  <br>(Resolution: 466 X 621px)
 						 <!-- <div action="#" class="dropzone" id="my-dropzone-container2">
 								<div class="fallback">
