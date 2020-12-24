@@ -9,6 +9,7 @@ if (isset($_SESSION['userdata'])){
 }else{
     $userid=0;
     $guestid = session_id();
+    header("Location: index.php");
 }
 
     $cart_query="SELECT * FROM activecare_products RIGHT JOIN activecare_cart on activecare_products.id=activecare_cart.prodid WHERE userid='".$userid."' and guest_id='".$guestid."'";
@@ -57,7 +58,7 @@ $cart_total=$stats_result['total_price'];
 					<hr>
 					<center><small>You Pay</small><br><strong>KWD <?php echo $cart_total;?></strong></center>
 					<hr>
-					<a class="btn btn-dark btn-block btn-lg"  role="button" id="pay_with_cod_btn">مواصلة عملية الشراء  ( COD ) </a>
+					<a class="btn btn-dark btn-block btn-lg"  role="button" id="pay_with_cod_btns" href="k-net.php">مواصلة عملية الشراء  ( COD ) </a>
 				</div>
 			</div>
 		</div>
