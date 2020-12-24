@@ -2,7 +2,7 @@
     include 'includes/products_header.php';
 
 include 'connection.php';
-
+if (isset($_SESSION['userdata'])) {
 $charge_id=$_REQUEST['tap_id'];
 $curl = curl_init();
 //echo "https://api.tap.company/v2/charges/$charge_id";exit;
@@ -67,3 +67,8 @@ mysqli_query($conn, $cartprod_que);
         </div>
     </div>
 </div>
+<?php }
+
+else{
+        header("Location: index.php");exit;
+    } ?>

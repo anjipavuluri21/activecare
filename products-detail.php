@@ -24,6 +24,10 @@
 include 'includes/products_header.php';
 include 'connection.php';
 $id = $_REQUEST['id'];
+if($id==''){
+        header("Location: index.php");
+
+}
 
 $data = "SELECT * FROM activecare_products WHERE id=" . $id;
 $result = mysqli_query($conn, $data);
@@ -95,10 +99,21 @@ $row = mysqli_fetch_assoc($result);
 
 
 <script>
-    
+   var delay = 1000; 
+     var userid="<?php echo isset($_SESSION['userdata']['id'])?$_SESSION['userdata']['id']:"";?>";
     $('#buy_it_now_btn').click(function(){
-//        alert();
-        
+        if(userid==''){
+            alert('Please login before adding  the cart');
+            var url = 'index.php'
+            setTimeout(function(){ window.location = url; }, delay);
+            return false;
+
+        }
+        if(userid ==''){
+            alert('');
+                   window.location.replace('index.php');
+
+        }
        $.ajax({
             type:'POST',
             url:"insert_shopping_bag.php",
