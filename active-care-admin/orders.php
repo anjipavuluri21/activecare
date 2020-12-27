@@ -54,7 +54,6 @@ include "header.php";
 							<td class=" "><?php echo $banner_result['paymentdate'] ?></td>	
 							<td style="text-align:center" class=" last">
 							<a class="btn btn-info" href="vieworder.php?id=<?php echo $banner_result['orderid'] ?>">View</a>&nbsp; 
-							<a class="btn btn-danger" href="#" id="delete_<?php echo $banner_result['orderid'] ?>"><i class="fa fa-trash"></i></a>&nbsp;
                             </td>
                           </tr>
                         <?php 
