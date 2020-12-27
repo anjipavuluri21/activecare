@@ -38,9 +38,17 @@ if ($err) {
 if ($TransactionStatus == "CAPTURED ") {
 $trans_status="Success";
     $cartprod_que = "UPDATE activecare_orders SET status=2, paystatus=2,  paymentdate=NOW() where status IN (1) AND orderid='$OrderID' AND customerid='" . $_SESSION['userdata']['id'] . "'";
+                $delete_query="DELETE FROM activecare_cart WHERE userid=".$_SESSION['userdata']['id'];
+                $result = mysqli_query($conn, $delete_query);
+            if (!mysqli_query($conn, $delete_query)) {
+            echo("Error description: " . mysqli_error($conn));
+            die();
+        }
+    
 }
 else {
 $trans_status="Fail or Pending";
+
 
     $cartprod_que = "UPDATE activecare_orders SET status=3, paystatus=3,  paymentdate=NOW() where status IN (1) AND orderid='$OrderID' AND customerid='" . $_SESSION['userdata']['id'] . "'";
 }
@@ -49,7 +57,7 @@ mysqli_query($conn, $cartprod_que);
 <div class="container clearfix">
     <div class="row" id="ele2">
         <div class="col-lg-12 col-md-12">
-            <h1 class="text-center fullwidth">Order <span>Confirmation</span></h1>
+            <h1 class="text-center fullwidth" style="margin: 12px">Order <span>Confirmation</span></h1>
         </div>
         <div class="col-lg-6 col-md-6 mycart-column">
             <div class="my-cart-items address-summary gold-color-bg">
@@ -72,3 +80,4 @@ mysqli_query($conn, $cartprod_que);
 else{
         header("Location: index.php");exit;
     } ?>
+<?php include 'includes/footer.php';?>

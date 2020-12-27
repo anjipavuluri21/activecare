@@ -35,23 +35,23 @@ include "header.php";
                         <tbody>
 						<?php
 						$i = 1;
-						$banner_que = "SELECT * from activecare_cartproducts where status IN (2,3) GROUP BY orderid ORDER BY id DESC";
+						$banner_que = "SELECT *,activecare_orders.status as order_status FROM `activecare_orders` LEFT JOIN activecare_customers on activecare_orders.customerid = activecare_customers.id  where not activecare_orders.status=1 group by activecare_orders.orderid";
 						$database1 = new Database();
 						$dbCon1 = $database1->getConnection();
 						$stmt1 = $dbCon1->prepare($banner_que);  
 						$stmt1->execute();	
+                                                
 						$menbanner_res = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+//                                                print_r($menbanner_res);exit;
 						foreach($menbanner_res as $banner_result)						
 						{
 						?>
                           <tr class="even pointer">                            
                             <td class=" "><?php echo $i ?></td>							
 							<td class=" "><?php echo $banner_result['orderid']; ?></td>
-							<td class=" "><?php $custinfo = getCustomerdata($banner_result['customerid']); 
-							echo $custinfo['fullname'];
-							?></td>	
-							<td class=" "><?php if($banner_result['status']==2){ echo "Success"; } else if($banner_result['status']==3){ echo "Failed"; } ?></td>	
-							<td class=" "><?php echo $banner_result['date'] ?></td>	
+							<td class=" "><?php echo $banner_result['fullname']; ?></td>	
+							<td class=" "><?php if($banner_result['order_status']==2){ echo "Success"; } else if($banner_result['order_status']==3){ echo "Failed"; } ?></td>	
+							<td class=" "><?php echo $banner_result['paymentdate'] ?></td>	
 							<td style="text-align:center" class=" last">
 							<a class="btn btn-info" href="vieworder.php?id=<?php echo $banner_result['orderid'] ?>">View</a>&nbsp; 
 							<a class="btn btn-danger" href="#" id="delete_<?php echo $banner_result['orderid'] ?>"><i class="fa fa-trash"></i></a>&nbsp;

@@ -45,41 +45,12 @@ if(isset($_POST['submit']))
                       <!-- title row -->
                       <div class="row">
                         <div class="col-xs-12 invoice-header">
-                          <h1>
+                            <h2>
 							  <i class="fa fa-globe"></i> Order ID: <?php echo $id ?>
-							  <small class="pull-right">Order Date: <?php echo $menbanner_res['date']; ?></small>
-						  </h1>
+						  </h2>
                         </div>
                         <!-- /.col -->
                       </div>
-                      <!-- info row -->
-                      <div class="row invoice-info">
-                        <div class="col-sm-4 invoice-col">
-                          <h2><b>House Address:</b></h2>
-                          <address>
-							  <strong><?php echo $customerdata['fullname']; ?></strong>
-							  <br>
-							  <?php  
-							  if($customertype==2){  echo getCustomerShipaddress($menbanner_res['customerid']); 
-							  } else { echo getGuestShipaddress($menbanner_res['customerid']); }  ?>
-							  <br>Phone: <?php echo $customerdata['mobile'] ?>
-							  <br>Email: <?php echo $customerdata['email'] ?>
-						  </address>
-                        </div>
-						<div class="col-sm-4 invoice-col">
-                         <h2><b>Building Address:</b></h2>
-                          <address>
-							  <?php 
-							  if($customertype==2){  echo getCustomerBilladdress($menbanner_res['customerid']); 
-							  } else { echo getGuestBilladdress($menbanner_res['customerid']); }							  
-							  ?>
-							  <br>Phone: <?php echo $customerdata['mobile'] ?>
-							  <br>Email: <?php echo $customerdata['email'] ?>
-						  </address>
-                        </div>                             
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.row -->
 
                       <!-- Table row -->
                       <div class="row">
@@ -88,9 +59,7 @@ if(isset($_POST['submit']))
                             <thead>
                               <tr>                               
                                 <th>Product Name</th>
-								<th>Category</th>
-								<th>Sub Category</th>
-								<th>Qty</th>
+                                <th>Qty</th>
                                 <th>Price</th>        
                                 <th>Subtotal</th>
                               </tr>
@@ -126,65 +95,7 @@ if(isset($_POST['submit']))
                         <!-- /.col -->
                       </div>
                       <!-- /.row -->  
-					  <div class="row">
-						<div class="col-xs-8">
-						  <form method="post">	
-							  <div class="form-group">
-								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Update Order Status<span class="required">*</span>
-								</label>                        
-								<div class="col-md-3 col-sm-3 col-xs-12">
-									<select name="orderstatus" id="orderstatus" required class="form-control" >
-										<option value="">-Select Status-</option>
-										<?php				
-										$order_que = "SELECT * from activecare_deliverystatus where 1=1";
-										$database1 = new Database();
-										$dbCon1 = $database1->getConnection();
-										$stmt1 = $dbCon1->prepare($order_que);  
-										$stmt1->execute();	
-										$ordersta_res = $stmt1->fetchAll(PDO::FETCH_ASSOC);
-										foreach($ordersta_res as $ordersta_result)	
-										{	
-										?>
-										<option <?php if($menbanner_res['orderstatus']==$ordersta_result['id']){ echo "selected"; } ?> value="<?php echo $ordersta_result['id']; ?>"><?php echo $ordersta_result['title']; ?></option>
-										<?php } ?>
-									</select>
-								</div>
-							  </div>
-							  <div class="form-group">
-								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-									<div class="clearfix">&nbsp;</div>
-								</div>
-							  </div>
-							  
-							  <div class="form-group">
-								<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-									<button type="submit" name="submit" class="btn btn-success">Submit</button>
-								</div>
-							  </div>
-							</form>					  
-						</div>
-						<div class="col-xs-4">
-						<table class="table">
-                              <tbody>                        
-                                <tr>
-                                  <th>Tax:</th>
-                                  <td><?php echo number_format($menbanner_res['tax'],3);?> <?php echo $prod_result['currencycode']; ?></td>
-                                </tr> 
-								<tr>
-                                  <th>Shipping:</th>
-                                  <td><?php echo number_format($menbanner_res['shipping'],3);?> <?php echo $prod_result['currencycode']; ?></td>
-                                </tr>
-								<tr>
-                                  <th>Grand Total:</th>
-                                  <td><?php echo number_format($grandtotal,3);?> <?php echo $prod_result['currencycode']; ?></td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          <!--<p class="lead">Total Amount</p>-->
-                         </div>
-                        <!-- /.col -->
-						
-                      </div>
+					  
                       <!-- this row will not appear when printing
                       <div class="row no-print">
                         <div class="col-xs-12">

@@ -22,6 +22,14 @@ include 'connection.php';
 
         $cart_count = $stats_result['product_count'];
         $grandtotal = $stats_result['total_price'];
+        while( $row= mysqli_fetch_assoc($result)){
+           
+//                    print_r($row);exit;
+
+            $insert_query="INSERT INTO activecare_orders (orderid,cartid,customerid,prodid,prodname,product_price,status) values('".$orderid."','".$row['id']."','".$_SESSION['userdata']['id']."','".$row['prodid']."','".$row['title']."','".$row['price']."','".$row['status']."')";
+            $results = mysqli_query($conn, $insert_query);
+           
+        }
     }else{
         header("Location: index.php");exit;
     }
