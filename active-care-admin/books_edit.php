@@ -193,7 +193,7 @@ $about_res = $stmt1->fetch(PDO::FETCH_ASSOC);
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Book Content<span class="required">*</span>
                                 </label>                        
                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" name="content" id="name" required="required" value="<?php echo $about_res['content'] ?>" class="form-control" style="width: 780px;">
+                                    <textarea type="text" name="content" id="name" required="required" class="form-control" style="width: 780px;"><?php echo $about_res['content'] ?></textarea>
                                 </div>
                             </div>	     
                             <div class="form-group">

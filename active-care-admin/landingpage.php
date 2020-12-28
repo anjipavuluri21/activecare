@@ -36,7 +36,7 @@ include "header.php";
 	  <div class="count greenew"><?php echo $about_res['prodcount']; ?></div>              
 	</div>
 	<?php 
-	$banner_que = "SELECT count(*) as prodcount from code8_cartproducts where status=2 GROUP BY orderid";
+	$banner_que = "SELECT count(*) as prodcount from activecare_orders where status=2 GROUP BY orderid";
 	$database1 = new Database();
 	$dbCon1 = $database1->getConnection();
 	$stmt1 = $dbCon1->prepare($banner_que);  
@@ -73,7 +73,7 @@ include "header.php";
 	  <div class="count greenew"><?php echo $about_res['prodcount']; ?></div>              
 	</div>
 	<?php 
-	$banner_que = "SELECT count(*) as prodcount from code8_cartproducts where status=3 GROUP BY orderid";
+	$banner_que = "SELECT count(*) as prodcount from activecare_orders where status=3 GROUP BY orderid";
 	$database1 = new Database();
 	$dbCon1 = $database1->getConnection();
 	$stmt1 = $dbCon1->prepare($banner_que);  
@@ -100,50 +100,7 @@ include "header.php";
 		$todayrev = $todayres['todaycount'];
 	}	
 	?>
-	<div class="tile_count">
-	<div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
-	  <span class="count_top"><i class="fa fa-money"></i> Today's Revenue</span>
-	  <div class="count greenew"><?php  echo number_format($todayrev,3); ?> </div>
-	</div>
-	<?php
-	$fromtime 	= date('01/m/Y').'';	
-	$totime 	= date('31/m/Y').'';
-	$tilltoday_que = "SELECT SUM(replace(PaidCurrencyValue, ',', '')) as todaycount from activecare_payments where TransactionStatus=2 AND TransactionDate BETWEEN '$fromtime' AND '$totime'";
-	$database1 = new Database();
-	$dbCon1 = $database1->getConnection();
-	$stmt1 = $dbCon1->prepare($tilltoday_que);  
-	$stmt1->execute();
-	$monthres = $stmt1->fetch(PDO::FETCH_ASSOC);
-	if($monthres['todaycount']==""){
-		$monthrev = "0";
-	} else {
-		$monthrev = $monthres['todaycount'];
-	}	
-	?>
-	<div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
-	  <span class="count_top"><i class="fa fa-money"></i> Present Month Revenue</span>
-	  <div class="count greenew"><?php echo number_format($monthrev,3); ?> </div>
-	</div>
 	
-	<?php 
-	$tilltoday_que = "SELECT SUM(replace(PaidCurrencyValue, ',', '')) as todaycount from activecare_payments where TransactionStatus=2";
-	$database1 = new Database();
-	$dbCon1 = $database1->getConnection();
-	$stmt1 = $dbCon1->prepare($tilltoday_que);  
-	$stmt1->execute();
-	$tilltodayres = $stmt1->fetch(PDO::FETCH_ASSOC);
-	if($tilltodayres['todaycount']==""){
-		$tillmonthrev = "0";
-	} else {
-		$tillmonthrev = $tilltodayres['todaycount'];
-	}
-	?>
-	<div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
-	  <span class="count_top"><i class="fa fa-money"></i> Revenue Till Date</span>
-	  <div class="count greenew"><?php echo number_format($tillmonthrev,3); ?> </div>
-	</div>
-	
-	</div>	
 	</div>	
 	<!-- /top tiles -->         
 	<br/>
@@ -195,9 +152,9 @@ include "header.php";
 		  <div class="x_content" >
 				<div class="dashboard-widget-content">
                     <ul class="quick-list">
-                      <li><i class="fa fa-calendar-o"></i><a style="color: #337ab7;font-weight:bold" href="homepagebody1.php">Home page management</a>
+                      <li><i class="fa fa-calendar-o"></i><a style="color: #337ab7;font-weight:bold" href="physiotherapy.php">Home page management</a>
                       </li>
-                      <li><i class="fa fa-bars"></i><a style="color: #337ab7;font-weight:bold" href="ourbooks_addnew.php">Add new Books</a>
+                      <li><i class="fa fa-bars"></i><a style="color: #337ab7;font-weight:bold" href="books_addnew.php">Add new Books</a>
                       </li>
                       
                       <li><i class="fa fa-paste"></i><a style="color: #337ab7;font-weight:bold" href="orders.php">Orders

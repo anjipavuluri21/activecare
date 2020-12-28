@@ -116,7 +116,7 @@ if(isset($_POST['submit']))
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Content<span class="required">*</span>
                         </label>                        
 						<div class="col-md-9 col-sm-9 col-xs-12">
-							<input type="text" name="content" id="name" required="required" value="" class="form-control" style="width: 780px;">
+                                                    <textarea name="content" id="name" required="required" class="form-control" style="width: 780px;"></textarea>
 						</div>
                       </div>	     
 			<div class="form-group">
