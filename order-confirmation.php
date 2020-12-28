@@ -45,19 +45,19 @@ if (isset($_SESSION['userdata'])) {
             echo("Error description: " . mysqli_error($conn));
             die();
         }
-        $emailid="anji.naga1@gmail.com";
-        $fullname="Anji";
+        $emailid = "anji.naga1@gmail.com";
+        $fullname = "Anji";
         $mail = new PHPMailer;
         $mail->SMTPDebug = 3;
         $mail->isSMTP();
         $mail->Host = "smtp.gmail.com";
         $mail->SMTPAuth = true;
-        $mail->Username = "code8.ecom@gmail.com";
-        $mail->Password = "code8@code8";
+        $mail->Username = "hello@activecare.online";
+        $mail->Password = "ELLOH@ct!ve123";
         $mail->SMTPSecure = "tls";
         $mail->Port = 587;
-        $mail->From = "code8.ecom@gmail.com";
-        $mail->FromName = "Code8 e-commerce website";
+        $mail->From = "hello@activecare.online";
+        $mail->FromName = "Active Care";
         $mail->addAddress($emailid, $fullname);
         $mail->isHTML(true);
         $mail->Subject = "ActiveCare e-commerce website - Order Confirmation";
@@ -118,17 +118,17 @@ if (isset($_SESSION['userdata'])) {
 									<th align="left" style="border:1px solid #eee;padding:5px">Ordered Date</th>											
 									<th align="left" style="border:1px solid #eee;padding:5px">Price</th>
 								</tr>';
-        $orders_query = "SELECT * FROM activecare_products RIGHT JOIN activecare_orders on activecare_products.id=activecare_orders.prodid WHERE customerid='".$userid."' and activecare_orders.status=2 and orderid=".$OrderID;
+        $orders_query = "SELECT * FROM activecare_products RIGHT JOIN activecare_orders on activecare_products.id=activecare_orders.prodid WHERE customerid='" . $userid . "' and activecare_orders.status=2 and orderid=" . $OrderID;
         $result = mysqli_query($conn, $orders_query);
-       $currencycode="KWD";
+        $currencycode = "KWD";
         $subtotal = 0;
-        while($row = mysqli_fetch_assoc($result)) {  
-           
+        while ($row = mysqli_fetch_assoc($result)) {
+
             $subtotal += $row['title'];
             $grandtotal = $subtotal;
             $mail->Body .= '<tr>
 							<td align="left" style="border:1px solid #eee;padding:5px">' . $row['title'] . '</td>
-							<td align="left" style="border:1px solid #eee;padding:5px">' . date("M ,d  Y",strtotime($row['paymentdate'])) . '</td>										
+							<td align="left" style="border:1px solid #eee;padding:5px">' . date("M ,d  Y", strtotime($row['paymentdate'])) . '</td>										
 							<td align="left" style="border:1px solid #eee;padding:5px">' . $row['price'] . ' KD</td>
 						</tr>';
         }
@@ -146,7 +146,12 @@ if (isset($_SESSION['userdata'])) {
 	</table>
 	</body>
 	</html>';
-        $mail->send();
+        try {
+            $mail->send();
+            echo "Message has been sent successfully";
+        } catch (Exception $e) {
+            echo "Mailer Error: " . $mail->ErrorInfo;
+        }
     } else {
         $trans_status = "Fail or Pending";
 
