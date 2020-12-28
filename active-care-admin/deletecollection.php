@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include 'connectionpdo.php';
 
 $id = $_POST['id'];
@@ -15,6 +15,14 @@ $res = $stmt1->rowCount();
 
 } else if($type == 'product'){
 $banner_que = "DELETE FROM activecare_products WHERE id='".$id."'";
+$database1 = new Database();
+$dbCon1 = $database1->getConnection();
+$stmt1 = $dbCon1->prepare($banner_que);
+$stmt1->execute();
+$res = $stmt1->rowCount();
+}
+else if($type == 'cart_remove'){
+$banner_que = "DELETE FROM activecare_cart WHERE userid='".$_SESSION['userdata']['id']."' and id='".$id."'";
 $database1 = new Database();
 $dbCon1 = $database1->getConnection();
 $stmt1 = $dbCon1->prepare($banner_que);
