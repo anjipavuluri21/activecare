@@ -4,16 +4,26 @@
     
     $data="SELECT * from activecare_banners where status=1";
     $result=mysqli_query($conn,$data);
+    
+    
 //    $row= mysqli_fetch_array($result);
 //    print_r($row);exit;
     
+    $data="SELECT * from activecare_settings where `name`='title'";
+    $results=mysqli_query($conn,$data);
+    $record = mysqli_fetch_array($results);
+    
+    $data="SELECT * from activecare_settings where `name`='title1'";
+    $results=mysqli_query($conn,$data);
+    $title = mysqli_fetch_array($results);
+//    print_r($record);exit;
 
 ?>
 <div class="banner-area" id="home-link">
 	<div class="container">
 		<div class="line-a" data-aos="fade-up" data-aos-duration="250"><img src="images/active-logo.png" class="img-fluid" alt=""></div>
-		<div class="line-b english-text" data-aos="fade-up" data-aos-duration="500">Giving you the</div>
-		<div class="line-c english-text" data-aos="fade-up" data-aos-duration="750">BEST LIFE</div>
+		<div class="line-b english-text" data-aos="fade-up" data-aos-duration="500"><?php echo $record['value'];?></div>
+		<div class="line-c english-text" data-aos="fade-up" data-aos-duration="750"><?php echo $title['value'];?></div>
 		<div class="line-d" data-aos="fade-up" data-aos-duration="1000">
 			<a class="btn btn-info" href="#" role="button" data-toggle="modal" data-target="#login-modal">تسجيل الدخول</a>
 			

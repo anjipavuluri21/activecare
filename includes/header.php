@@ -106,7 +106,7 @@ define("BASE_URL", $url);
             <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Register an account<br>and join our community</h5>
+                        <h5 class="modal-title">تسجيل حساب<br>والانضمام إلى مجتمعنا</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body modal-body-popup">
