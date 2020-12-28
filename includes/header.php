@@ -204,7 +204,7 @@ define("BASE_URL", $url);
 
                             <div class="form-group">
                                 <label for="joinus-cv">Upload CV</label>
-                                <input type="file" name="file" class="form-control-file" id="joinus-cv">
+                                <input type="file" name="cv_file" class="form-control-file" id="joinus-cv">
                             </div>
 
                             <button type="submit" name="submit" class="btn btn-info" id="joinusbutton">SUBMIT</button>

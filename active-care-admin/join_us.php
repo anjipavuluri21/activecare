@@ -27,6 +27,7 @@ include "header.php";
 						<th width="100" class="column-title">Position</th>			 
 						<th width="150" class="column-title">Email</th>			 
 						<th width="150" class="column-title">Mobile</th>			 
+						<th width="150" class="column-title">Resume</th>			 
 								 
 						<th width="200" style="text-align:center" class="column-title no-link last"><span class="nobr">Action</span>
 						</th>
@@ -57,6 +58,7 @@ include "header.php";
 						<td class=" "><?php echo $banner_result['position'] ?></td>
                                                 <td class=" "><?php echo $banner_result['email'];?></td>
                                                 <td class=" "><?php echo $banner_result['mobile'];?></td>
+                                                <td class=" "><a href="../uploads/resumes/<?php echo $banner_result['file'] ?>" style="color:red" target="_blank"><?php echo $banner_result['file'] ?></a></td>
                                                 
 						<td style="text-align:center" class=" last">
 						<a class="btn btn-danger" href="#" id="delete_<?php echo $banner_result['id'] ?>">Delete</a>

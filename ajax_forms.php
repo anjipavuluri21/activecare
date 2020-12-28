@@ -122,6 +122,7 @@
                 timeout: 800000,
                 
             success: function (data) {
+                console.log(data);
                     var res=JSON.parse(data);
                     if(res['code']==200)
                                window.location.replace('index.php');

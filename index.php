@@ -25,7 +25,14 @@
 		<div class="line-b english-text" data-aos="fade-up" data-aos-duration="500"><?php echo $record['value'];?></div>
 		<div class="line-c english-text" data-aos="fade-up" data-aos-duration="750"><?php echo $title['value'];?></div>
 		<div class="line-d" data-aos="fade-up" data-aos-duration="1000">
-			<a class="btn btn-info" href="#" role="button" data-toggle="modal" data-target="#login-modal">تسجيل الدخول</a>
+                    <?php 
+                    if(isset($_SESSION['userdata'])){?>
+                       <a class="btn btn-info" href="logout.php" role="button" >تسجيل الخروج</a>
+";
+                   <?php }else{?>
+                        <a class="btn btn-info" href="#" role="button" data-toggle="modal" data-target="#login-modal">تسجيل الدخول</a>
+                    <?php }
+                    ?>
 			
 			<a class="btn btn-dark" href="products.php" role="button">كتبنا الإلكترونية</a>
 		</div>
