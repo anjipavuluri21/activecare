@@ -13,7 +13,7 @@ if(isset($_POST['submit']))
         $image                          = $_FILES['background_image']['name'];
         $color_code                     = $_POST['color_code'];
 
-	$query = "UPDATE activecare_services SET `title`='$title',`content`='$content',`service_title`='$service_title',`color_code`='$color_code' WHERE id=$id";
+	$query = "UPDATE `activecare_services` SET `title`='$title',`content`='$content',`service_title`='$service_title',`color_code`='$color_code' WHERE id=.$id";
 //        print_r($query);exit;
         $database1 = new Database();
 	$dbCon1 = $database1->getConnection();

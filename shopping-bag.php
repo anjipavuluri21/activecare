@@ -23,7 +23,7 @@ $cart_total = $stats_result['total_price'];
 ?>
 
 <div class="banner-area" id="home-link">&nbsp;</div>
-<div class="mid-area">
+<div class="mid-area mid-area-bg">
     <div class="container">
         <h5>سلة التسوق</h5>
 
@@ -36,7 +36,7 @@ $cart_total = $stats_result['total_price'];
                             <div class="col-8 col-sm-8 col-md-10">
                                 <div class="shopping-bag-block">
                                     <p><strong><?php echo $row['title']; ?></strong></p>
-                                    <p>KWD <?php echo $row['price']; ?></p>
+                                    <p>KWD <?php echo number_format($row['price'],3); ?></p>
 <!--                                    <input type="text" value="<?php echo $row['id']; ?>" name="cart_item" id="cart_item"/>-->
                                     <p class="mb-0"><a href="#" id="delete_<?php echo $row['id'] ?>"><img src="http://kuwaitgate.org/active-care/13/images/icons/trash.svg" alt=""> حذف</a></p>
 
@@ -53,11 +53,22 @@ $cart_total = $stats_result['total_price'];
                     <div class="row justify-content-between">
                         <div class="col-auto"><strong>طلباتي</strong></div>
                         <div class="col-auto"><span class="bag-right-items"><?php echo $cart_count; ?> Items</span></div>
+                        
                     </div>
                     <hr>
-                    <center><small>You Pay</small><br><strong>KWD <?php echo $cart_total; ?></strong></center>
+                    <center><small>You Pay</small><br><strong>KWD <?php echo number_format($cart_total,3); ?></strong></center>
                     <hr>
-                    <a class="btn btn-dark btn-block btn-lg"  role="button" id="pay_with_cod_btns" href="k-net.php">مواصلة عملية الشراء  ( COD ) </a>
+                    <?php 
+                        if($cart_count==0){ ?>
+                    
+                                                     <script>alert("Cart is empty")</script> 
+                                
+                        <?php }
+                        else{ ?>
+                                                <a class="btn btn-dark btn-block btn-lg"  role="button" id="pay_with_cod_btns" href="k-net.php">مواصلة عملية الشراء  ( COD ) </a>
+
+                       <?php  }
+                        ?>
                 </div>
             </div>
         </div>

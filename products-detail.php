@@ -1,27 +1,7 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="theme-color" content="#ffffff">
-<title>ACTIVE CARE</title>
-<link rel="apple-touch-icon" sizes="180x180" href="images/fevicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="images/fevicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="images/fevicon/favicon-16x16.png">
-<link rel="manifest" href="images/fevicon/site.webmanifest">
-<link rel="mask-icon" href="images/fevicon/safari-pinned-tab.svg" color="#5bbad5">
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">	
-<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet">	
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-<link href="css/ubislider.min.css" rel="stylesheet" type="text/css">
-<link href="css/custom.css" rel="stylesheet" type="text/css">
-	
 
-	
-</head>
 <?php
 include 'includes/products_header.php';
+include 'includes/login_modal.php';
 include 'connection.php';
 $id = $_REQUEST['id'];
 if($id==''){
@@ -37,14 +17,15 @@ $row = mysqli_fetch_assoc($result);
 
 	
 <div class="banner-area" id="home-link">&nbsp;</div>
-	
+<a class="btn btn-info" href="#" role="button" data-toggle="modal" id="login_anchor" data-target="#login-modal" style="display:none">تسجيل الدخول</a>
 
-<div class="mid-area">
+
+<div class="mid-area mid-area-bg">
 	<div class="container">
 		<div class="row">
 			 <div class="col-12 col-sm-12 col-md-6">
                 <h4 class="mb-5"><?php echo $row['title']; ?></h4>				
-                <h5 class="mb-5 text-danger"><?php echo $row['price']; ?></h5>
+                <h5 class="mb-5 text-danger"><?php echo number_format($row['price'],3); ?></h5>
 
                 <p class="mb-5"><?php echo $row['content']; ?></p>
 
@@ -79,7 +60,7 @@ $row = mysqli_fetch_assoc($result);
 <?php include 'includes/footer.php'; 
 ?>
   <!--  Product gallery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/elevatezoom/3.0.8/jqueryElevateZoom.js"></script>	
 <script src="js/ubislider.min.js?v=1.0.0.1"></script>
 <script>
@@ -103,18 +84,9 @@ $row = mysqli_fetch_assoc($result);
      var userid="<?php echo isset($_SESSION['userdata']['id'])?$_SESSION['userdata']['id']:"";?>";
     $('#buy_it_now_btn').click(function(){
         if(userid==''){
-            alert('Please login before adding  the cart');
-            var url = 'index.php'
-            setTimeout(function(){ window.location = url; }, delay);
-            return false;
-
-        }
-        if(userid ==''){
-            alert('');
-                   window.location.replace('index.php');
-
-        }
-       $.ajax({
+        $('#login-modal').modal('toggle');
+        }else{
+             $.ajax({
             type:'POST',
             url:"insert_shopping_bag.php",
             data:{id:<?php echo $id;?>},
@@ -123,8 +95,8 @@ $row = mysqli_fetch_assoc($result);
             },
             
         });
-        
-    });
+        }
+  });
     
 
 </script>	

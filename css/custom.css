@@ -160,6 +160,7 @@ a:focus,a:hover		{text-decoration:none;}
 .navbar		{padding: 0rem;}
 .bg-light	{background-color: transparent !important;}
 
+.mid-area-bg	{background: url("../images/in-pages-bg.svg") no-repeat left top !important;} 
 
 .mid-area	{padding-top: 3rem; padding-bottom: 3rem; margin-bottom: 3rem; border-bottom: 1px solid #e5e5e5;}
 

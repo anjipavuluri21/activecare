@@ -1,6 +1,6 @@
 <?php
 include 'connection.php';
-
+//$id = $_REQUEST['$lastid'];
  if (isset($_SESSION['userdata'])) {
     $cust_name = $_SESSION['userdata']['username'];
     $cust_mobile = $_SESSION['userdata']['mobile'];
@@ -9,6 +9,14 @@ include 'connection.php';
     $currencycode = "KWD";
    
         $cart_query = "SELECT * FROM activecare_products RIGHT JOIN activecare_cart on activecare_products.id=activecare_cart.prodid WHERE userid=" . $_SESSION['userdata']['id'];
+        $result = mysqli_query($conn, $cart_query);
+//        print_r(mysqli_fetch_assoc($result));exit;
+        if (!mysqli_query($conn, $cart_query)) {
+            echo("Error description: " . mysqli_error($conn));
+            die();
+        }
+        
+        $cart_query = "SELECT * FROM activecare_complete_purchase_order where ";
         $result = mysqli_query($conn, $cart_query);
 //        print_r(mysqli_fetch_assoc($result));exit;
         if (!mysqli_query($conn, $cart_query)) {
@@ -78,11 +86,11 @@ $newdatarray = array(
     ),
     'post' =>
     array(
-        'url' => 'http://oascap.com/active-care/order-confirmation.php',
+        'url' => 'http://activecare.online/order-confirmation.php',
     ),
     'redirect' =>
     array(
-        'url' => 'http://oascap.com/active-care/order-confirmation.php',
+        'url' => 'http://activecare.online/order-confirmation.php',
     ),
 );
 $jsondata = str_replace(array('[', ']'), '', htmlspecialchars(json_encode($newdatarray), ENT_NOQUOTES));

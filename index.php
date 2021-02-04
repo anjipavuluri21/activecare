@@ -120,12 +120,15 @@
         $result=mysqli_query($conn,$data);
     $row = mysqli_fetch_array($result);
 //    print_r($row).exit;
-        
+     $data="SELECT * from activecare_settings where `name`='our_team_content'";
+    $results=mysqli_query($conn,$data);
+    $title = mysqli_fetch_assoc($results);
+//    print_r($title);exit;
         ?>
 <div class="team-wrap jarallax" id="team-link">
 	<div class="container main-h1">
 		<h1><?php echo $row['title'];?></h1>
-                <p><?php echo $row['content'];?></p>
+                <p><?php echo $title['value'];?></p>
 		
 		
 
@@ -273,10 +276,10 @@
 							<label for="kit-quantity-2">نوع المجموعة</label>
                                                         <select id="kit-quantity-2" name="group_type" class="form-control">
 								<option selected>نوع المجموعة</option>
-								<option>اليومية</option>
-								<option>الرياضية</option>
-								<option>الأطفال</option>
-								<option>كبار السن</option>	
+								<option>اليومية  10KD</option>
+								<option>الرياضية 12KD</option>
+								<option>الأطفال 30KD</option>
+								<option>كبار السن 40KD</option>	
 							</select>
 							
 						</div>
@@ -559,7 +562,7 @@
 						</div>
 					</div>
 					
-                                        <button type="submit" name="submit" id="activebutton" class="btn btn-info">إتمام عملية الشراء</button>
+                                        <button type="submit" name="submit" id="activebutton"  class="btn btn-info">إتمام عملية الشراء</button>
 						
 						
 				</form>

@@ -1,4 +1,5 @@
 <script>
+    var current_page="<?php echo (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";?>";
     $(document).ready(function () {
 
         $("#loginbutton").click(function (event) {
@@ -27,7 +28,7 @@
                     //console.log(res);stop();
 //                    alert(res);
                     if(res['code']==200)
-                              window.location.replace('index.php');
+                              window.location.replace(current_page);
                     if(res['code']==203)
                         alert('Invalid Credentials');
                     if(res['code']==204){
@@ -212,7 +213,8 @@
                     var res=JSON.parse(data);
                     
                     if(res['code']==200){
-                               window.location.replace('index.php');
+//                        alert('sucess');
+                               window.location.replace('k-net.php');
                     }
                     if(res['code']==204)
                         alert('Please fill all the feilds');

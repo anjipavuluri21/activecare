@@ -8,7 +8,7 @@ $result=mysqli_query($conn,$data);
 ?>
 <div class="banner-area" id="home-link"><img src="images/banner/books.jpg" alt="" class="img-fluid"></div>
 
-<div class="mid-area">
+<div class="mid-area mid-area-bg">
     <div class="container">
         <h1>كتبنا الإلكترونية</h1>
 
@@ -25,7 +25,7 @@ $result=mysqli_query($conn,$data);
                         <a href="products-detail.php?id=<?php echo $prodid;?>">
                             <div class="books-a"><img src="uploads/products/<?php echo $row['thumimage1'];?>" class="img-fluid"></div>
                             <div class="books-b"><?php echo $row['title'];?></div>
-                            <div class="books-c"><?php echo $row['price']?></div>
+                            <div class="books-c"><?php echo number_format($row['price'],3)?></div>
 
 
                         </a>

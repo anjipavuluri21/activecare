@@ -13,12 +13,16 @@ if ($_POST['email']!=''){
     $title = $_POST['title'];
     $country = $_POST['country'];
     $region = $_POST['region'];
+   
+    
+$outputString = preg_replace('/[^0-9]/', '', $group_type);  
 
+    $loginquery = "INSERT INTO activecare_complete_purchase_order(first_name,family_name,email,mobile,interenational_number,group_type,group_number,price,title,country,region) 
+                values('$fname','$sname','$email','$mobile2','$mobile','$group_type','$group_no','$outputString','$title','$country','$region')";
 
-    $loginquery = "INSERT INTO activecare_complete_purchase_order(first_name,family_name,email,mobile,interenational_number,group_type,group_number,title,country,region) 
-                values('$fname','$sname','$email','$mobile2','$mobile','$group_type','$group_no','$title','$country','$region')";
     $result = mysqli_query($conn, $loginquery);
-
+//    $lastid = mysqli_insert_id($conn);
+//    print_r($lastid);exit;
     if ($result === TRUE) {
         $response = ['code'=>200];
 //        header("location: index.php");

@@ -57,6 +57,7 @@
 	
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js">
 <script src="js/jquery-3.5.1.slim.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -65,7 +66,6 @@
 <!-- Optional JavaScript -->
 	
 <!-- Banner -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>	
 <script src="js/jquery.bxslider.min.js"></script>
 <script>
 $(function(){

@@ -15,7 +15,7 @@ if ($_POST['email'] != '' && $_POST['password'] != '') {
         $userarray = ['email' => $row['email'],
             'id' => $row['id'],
             'mobile' => $row['mobile'],
-            'username' => $row['fullname'],
+            'username' => $row['first_name'],
         ];
 
         $_SESSION['userdata'] = $userarray;

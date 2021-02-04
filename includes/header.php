@@ -68,37 +68,9 @@ define("BASE_URL", $url);
         <div class="book-appoinment-button"><a href="tel:1800110"><img src="images/book-appoinment-button.svg" alt=""></a></div>
 
         <!-- LOGIN -->
-        <div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">أدخل لحسابك</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="modal-body modal-body-popup">
-                        <form method="post" id="login_form">
-                            <div class="form-group">
-                                <label for="login-email">البريد الإلكتروني</label>
-                                <input type="email" name="email" required class="form-control" id="login-email" placeholder="البريد الإلكتروني">
-                            </div>
-                            <div class="form-group">
-                                <label for="login-password">كلمه السر</label>
-                                <input type="password" name="password" class="form-control" id="login-password" placeholder="كلمه السر" required="Please Enter Password">
-                            </div>
-                            <div id="output">
-                                
-                                
-                            </div>
-                            <button type="submit" name="login" class="btn btn-primary" id="loginbutton">تسجيل الدخول</button>
-                            <p>&nbsp;</p>
-                            <hr>
-                            <p>&nbsp;</p>					<p class="mb-0">لا يوجد لديك حساب؟</p>
-                            <p class="mb-0"><strong><a href="#" data-toggle="modal" data-target="#register-modal" data-dismiss="modal">أنشئ حسابك الآن</a></strong></p>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>	
+      <?php   
+      include 'includes/login_modal.php';
+      ?>
         <!-- LOGIN -->
 
         <!-- SIGN UP -->
@@ -221,12 +193,12 @@ define("BASE_URL", $url);
         <div class="header-area">
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="index.php" data-scroll="home-link"><img src="images/active-care-logo.svg" class="img-fluid" alt=""></a>
+                    <a class="navbar-brand" href="index.php"><img src="images/active-care-logo.svg" class="img-fluid" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-
+                        
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item"><a class="nav-link" href="#!" data-scroll="about-link">قصتنا</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#!" data-scroll="index.php/about-link">قصتنا</a></li>
                             <li class="nav-item"><a class="nav-link" href="#!" data-scroll="services-link">خدماتنا</a></li>
                             <li class="nav-item"><a class="nav-link" href="#!" data-scroll="team-link">فريقنا</a></li>
                             <li class="nav-item"><a class="nav-link" href="#!" data-scroll="products-link">منتجاتنا</a></li>
@@ -234,7 +206,32 @@ define("BASE_URL", $url);
                             <li class="nav-item"><a class="nav-link" href="#!" data-scroll="contact-link">اتصل بنا</a></li>
                             <!--<li class="nav-item"><a class="nav-link" href="#">English</a></li>	-->
                         </ul>
+                        
                     </div>
+                    <div class="row align-items-center justify-content-end">
+                                    <?php 
+                                        if(isset($_SESSION['userdata'])){ ?>
+                                            <div class="col-auto">
+						<div class="dropdown">
+                                                    <a class="dropdown-toggle" href="#" role="button" id="drop-user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo ($_SESSION['userdata']['username']) ;?></a>
+							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="drop-user">
+								<a class="dropdown-item" href="orders.php">طلباتي</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="profile.php">تعديل حسابي</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="logout.php">تسجيل الخروج</a>
+							</div>
+						</div>
+					</div>
+                                            
+                                            
+                                        <?php }
+                                        
+                                    
+                                    ?>
+					
+					
+				</div>
                 </nav>
             </div>
         </div>
